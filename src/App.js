@@ -5,13 +5,13 @@ import Palettes from './Components/Palettes'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Palette from "./Components/Palette";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <AppStyled bg={bg} grid={bg2}>
-        <div className="grid"></div>
-        <Routes>
-          <Route path="/" element={<Palettes />} />
+function App() { 
+  return ( 
+    <BrowserRouter> 
+      <AppStyled bg={bg} grid={bg2}> 
+        <div className="grid"></div> 
+        <Routes> 
+          <Route path="/" element={<Palettes />} /> 
           <Route path="/palette/:id" element={<Palette />} />
         </Routes>
       </AppStyled>
@@ -34,6 +34,12 @@ const AppStyled = styled.div`
       background-image: url(${props => props.grid});
       background-repeat: repeat;
       z-index: 0;
+    }
+    @media screen and (max-width: 768px) {
+      /* Adjust grid background size for mobile */
+      .grid {
+        background-size: 30px;
+      }
     }
 `;
 

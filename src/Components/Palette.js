@@ -320,6 +320,41 @@ const PaletteStyled = styled.div`
             z-index: 1;
         }
     }
+    @media screen and (max-width: 768px) {
+        .header-items {
+          flex-direction: column;
+          height: auto;
+          padding: 1rem;
+          .link-con {
+            width: 100%;
+            margin-bottom: 1rem;
+          }
+          .select-type {
+            width: 100%;
+          }
+          .right {
+            width: 100%;
+            justify-content: space-between;
+            button:last-child {
+              margin-left: auto;
+            }
+          }
+        }
+    
+        .colors {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+    
+        .color-picker {
+          width: 90%;
+          max-width: 350px;
+          left: 50%;
+          transform: translateX(-50%);
+          button {
+            width: 100%;
+          }
+        }
+      }
 `;
 
 export default Palette

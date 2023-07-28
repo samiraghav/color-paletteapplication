@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import slugify from 'react-slugify'
 import styled from 'styled-components'
-import {palette} from '../myPalettes'
+import { palette } from '../myPalettes'
 
 function Palettes() {
 
@@ -15,7 +15,7 @@ function Palettes() {
     React.useEffect(() => {
         myPalettes.forEach((pal, index) => {
             const savedPalette = localStorage.getItem(`myPalette-${pal.name}`)
-            if(!savedPalette){
+            if (!savedPalette) {
                 localStorage.setItem(`myPalette-${pal.name}`, JSON.stringify(pal))
             }
         })
@@ -25,14 +25,14 @@ function Palettes() {
     React.useEffect(() => {
         const palettes = []
 
-        for(let i = 0; i < localStorage.length; i++){
+        for (let i = 0; i < localStorage.length; i++) {
             //get the key name depending the index
             const key = localStorage.key(i)
             //check if the key starts with myPalette-
-            if(key.startsWith('myPalette-')){
+            if (key.startsWith('myPalette-')) {
                 //get value of the key
                 const savedPalette = localStorage.getItem(key)
-                if(savedPalette){
+                if (savedPalette) {
                     palettes.push(JSON.parse(savedPalette))
                 }
             }
@@ -47,15 +47,15 @@ function Palettes() {
         //update ls State
         setLsPalettes(palettes)
 
-    }, []); 
+    }, []);
 
     //generate 20 random colors
     const generateRandomColors = () => {
         const colors = []
 
-        while(colors.length < 20) {
+        while (colors.length < 20) {
             const color = chroma.random().hex();
-            if(chroma.valid(color)){
+            if (chroma.valid(color)) {
                 colors.push(color)
             }
         }
@@ -75,7 +75,7 @@ function Palettes() {
         //check if it exist in ls
         const key = `myPalette-${newPalette.name}`;
         const savedPalette = localStorage.getItem(key)
-        if(savedPalette){
+        if (savedPalette) {
             return
         }
 
@@ -95,7 +95,7 @@ function Palettes() {
                 <div className="input-control">
                     <input required placeholder='Create Palette...' value={paletteName} onChange={(e) => {
                         setPaletteName(e.target.value)
-                    }} type="text"  />
+                    }} type="text" />
                     <button onClick={() => {
                         addPalette()
                     }}>+</button>
@@ -107,11 +107,11 @@ function Palettes() {
                         return <Link to={`/palette/${pal.name}`} key={pal.name}>
                             <div className="palette">
                                 {pal.colors.map((col, i) => {
-                                    return <div key={i} 
+                                    return <div key={i}
                                         className="color"
-                                        style={{backgroundColor: col}}
-                                        >
-                                        </div>
+                                        style={{ backgroundColor: col }}
+                                    >
+                                    </div>
                                 })}
                             </div>
                             <p>{pal.name}</p>
@@ -240,5 +240,38 @@ const PalettesStyled = styled.div`
             }
         }
     }
+    
+  @media screen and (max-width: 1670px) {
+    /* Adjust add-palette for smaller screens */
+    .add-palette {
+      padding-left: 12rem;
+      padding-right: 12rem;
+    }
+  }
+
+  @media screen and (max-width: 1320px) {
+    /* Adjust add-palette for even smaller screens */
+    .add-palette {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+
+  @media screen and (max-width: 970px) {
+    /* Adjust add-palette for mobile */
+    .add-palette {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 2rem;
+      padding-bottom: 1.5rem;
+    }
+
+    /* Adjust palettes grid for mobile */
+    .palettes {
+      padding: 1rem 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-gap: 20px;
+    }
+  }
 `;
 export default Palettes
