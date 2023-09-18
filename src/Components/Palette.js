@@ -26,7 +26,7 @@ function Palette() {
 
 
     //random texts
-    const copyTexts = ['Paste Me!', 'Copied!','Oh Paste Me','Already Copied!', 'Nice!', 'Okay!', 'Done!', 'Good Choice!', 'Right One!'];
+    const copyTexts = ['Paste Me!', 'Copied!','Oh Paste Me!','Already Copied!', 'Nice!', 'Okay!', 'Done!', 'Good Choice!', 'Right One!'];
 
 
     //send to localStorage
